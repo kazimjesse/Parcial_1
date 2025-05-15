@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -56,8 +58,17 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     var contexto = LocalContext.current
 
     Text(
-        text = "$name!",
+        text = "$name",
+        fontSize = 35.sp,
         modifier = modifier
+    )
+
+    Spacer(modifier = Modifier.padding(20.dp))
+
+    Text(
+        text = "Kazim Jesse",
+        fontSize = 25.sp,
+        modifier = Modifier
     )
 
     Spacer(modifier = Modifier.padding(10.dp))
@@ -71,27 +82,9 @@ fun ValidarCalificacion(){
 
     var contexto = LocalContext.current
 
-    var Estudiante1 by remember { mutableStateOf("") }
-    var Estudiante2 by remember { mutableStateOf("") }
     var Calificacion by remember { mutableStateOf("") }
 
-    TextField(
-        value = Estudiante1,
-        onValueChange = {Estudiante1 = it},
-        label = { Text("Nombre del estudiante #1:") },
-        textStyle = TextStyle(color = Color.Blue, fontSize = 20.sp),
-        modifier = Modifier.padding(20.dp)
-    )
-
-    TextField(
-        value = Estudiante2,
-        onValueChange = {Estudiante2 = it},
-        label = { Text("Nombre del estudiante #2:") },
-        textStyle = TextStyle(color = Color.Magenta, fontSize = 20.sp),
-        modifier = Modifier.padding(20.dp)
-    )
-
-    TextField(
+    OutlinedTextField(
         value = Calificacion,
         onValueChange = {Calificacion = it},
         label = { Text("Ingrese la calificacion del grupo:") },
@@ -99,7 +92,7 @@ fun ValidarCalificacion(){
         modifier = Modifier.padding(20.dp)
     )
     
-    Spacer(modifier = Modifier.padding(10.dp))
+    Spacer(modifier = Modifier.padding(25.dp))
 
     Button(
         onClick = {
@@ -111,18 +104,19 @@ fun ValidarCalificacion(){
                 }else if(calificacion >= 61 && calificacion<=70){
                     Toast.makeText(contexto,"Obtuvieron una D (por los pelos)",Toast.LENGTH_LONG).show()
                 }else if (calificacion>=71 && calificacion<=80){
-                    Toast.makeText(contexto,"Obtuvieron una C(Regular)",Toast.LENGTH_LONG).show()
+                    Toast.makeText(contexto,"Obtuvieron una C (Regular)",Toast.LENGTH_LONG).show()
                 }else if (calificacion>=81 && calificacion<=90){
-                    Toast.makeText(contexto,"Obtuvieron una B(Bueno)",Toast.LENGTH_LONG).show()
+                    Toast.makeText(contexto,"Obtuvieron una B (Bueno)",Toast.LENGTH_LONG).show()
                 }else
-                    Toast.makeText(contexto,"Obtuvieron una A(Excelente)",Toast.LENGTH_LONG).show()
+                    Toast.makeText(contexto,"Obtuvieron una A (Excelente)",Toast.LENGTH_LONG).show()
             }else
                 Toast.makeText(contexto,"Introduzca un numero valido",Toast.LENGTH_LONG).show()
         },
-        modifier = Modifier.height(55.dp).width(110.dp)
+        modifier = Modifier.height(55.dp).width(130.dp)
     ) {
         Text(
-            text = "Validar"
+            text = "Validar",
+            fontSize = 15.sp
         )
     }
 }
@@ -130,7 +124,15 @@ fun ValidarCalificacion(){
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GreetingPreview() {
-    Parcial_1Theme {
-        Greeting("Android")
+    Column (
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally)
+    {
+        Greeting(
+            name = "Parcial #1",
+        )
     }
 }
